@@ -6,7 +6,7 @@ const DashboardController = {
 
    getTest: async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log("Test works")
+        console.log("Bobo push works")
         res.json({ message: 'Test route works!' });
     } catch (error) {
         console.error(error);
