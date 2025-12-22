@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    // File Layout
+    "rootDir": "./src",          // Source folder
+    "outDir": "./dist",          // Compiled JS output folder
+
+    // Environment Settings
+    "module": "commonjs",        // Use CommonJS for Node
+    "target": "ES6",             // Modern JS target
+    "types": ["node"],           // Node types for TS
+    "lib": ["ES6"],
+
+    // Other Outputs
+    "sourceMap": true,           // Generate source maps
+    "declaration": true,         // Generate .d.ts files
+    "declarationMap": true,      // Generate .d.ts.map files
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Style / Safety Options
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,      // Allows default imports of CommonJS modules
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src"]
+}
