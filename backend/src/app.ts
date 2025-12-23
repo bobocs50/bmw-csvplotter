@@ -2,15 +2,22 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import dashboardRoutes from './routes/DashboardRoutes';
+import multer from "multer";
 dotenv.config();
 
 
-
+//Setup
 const app = express();
+
 
 //Middleware
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_SERVER_URL, 
+    credentials: true
+}));
+
+
 
 //Routes
 app.use("/api", dashboardRoutes)
