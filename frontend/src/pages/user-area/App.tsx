@@ -29,11 +29,11 @@ export default function App() {
   }
 
   const getCsv = async () => {
-
     //get data
       const data = await getCsvData()
       setCsvData(data?.data)
       console.log("The datat: ", data)
+
   }
 
   useEffect(() => {
@@ -43,28 +43,23 @@ export default function App() {
 
 
   
-  console.log("The uuid: ", Object.keys(csvData))
-  console.log("The conent: ", Object.values(csvData)[0])
+// Get first CSV values
+const firstCsv = Object.values(csvData)[0]|| [];
 
+// Get X and Y keys
+const firstscv = Object.values(csvData)[0]
+const firstrow = firstscv[0]
+const xKey = Object.keys(firstrow)[0];
+const yKeys = Object.keys(firstrow).slice(1)
 
-
- // Wait until we have at least one CSV
-const firstCsv = Object.values(csvData)[0] || [];
-
-
-// If no data yet, avoid crashing
-const xKey = firstCsv[0] ? Object.keys(firstCsv[0])[0] : 'Referenznummer';
-const yKeys = firstCsv[0] ? Object.keys(firstCsv[0]).slice(1) : ['A', 'B', 'C'];
-
-const colors = ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6"]; // Add more if needed
-
-
+//colors setup
+const colors = ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6"];
 
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
-      <h1 className="text-4xl font-bold text-fuchsia-500 mb-8">
-        Bobo is working! ✅
+      <h1 className="text-4xl font-bold text-black mb-8">
+      Graph 1
       </h1>
       <div className="w-full max-w-4xl h-96">
         <ResponsiveContainer>

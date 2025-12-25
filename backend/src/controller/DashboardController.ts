@@ -18,12 +18,10 @@ const DashboardController = {
       const csvContent = fs.readFileSync(file.path, "utf8");
       //Convert to Json
       const parsedData = Papa.parse(csvContent, 
-         { header: true, skipEmptyLines: true, transform: (value, column) => {
-            // Keep 'Referenznummer' as string
-            if (column === "Referenznummer") return value;
-
-            // Convert comma decimals to dot and parse as float
-            return parseFloat(value.replace(",", "."));
+         { header: true, skipEmptyLines: true, transform: (value) => {
+            //replace every . for frontend rechart 
+            const normalize = value.replace(/,/g, ".");
+            return normalize
          }});
 
       //Generate an ID for CSV
@@ -48,15 +46,14 @@ const DashboardController = {
    try {
       
       console.log("CSV get triggered")
+      const csvObject: { [id: string]: any[] } = {};
       
-
-
+      for (const [id, data] of csvStorage){
+        csvObject[id] = data
+      }
       
+      console.log("Puffer: ", csvObject)
       
-      
-      const csvObject = Object.fromEntries(csvStorage.entries());
-      
-      console.log(csvObject)
       res.json({ ok: true, data: csvObject });
       console.log("Success! Received CSVfile")
 
