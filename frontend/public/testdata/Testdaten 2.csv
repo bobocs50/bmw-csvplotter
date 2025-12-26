@@ -25,7 +25,7 @@
 #P13:Output-Signal-Unit        : -;;;
 #P14:Benutzer                  : Max Mustermann, EF-XXX;;;
 #P15:Prüfstand                 : BMW-001;;;
-#Point Nr.; Freq.;FRFMag;FRFPhase
+Point Nr.; Freq.;FRFMag;FRFPhase
 0;0,806451613;14,435113;6,789436
 1;0,811827957;14,68741;6,997549
 2;0,817204301;14,940526;7,212755

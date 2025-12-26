@@ -18,7 +18,7 @@ const DashboardController = {
       const csvContent = fs.readFileSync(file.path, "utf8");
       //Convert to Json
       const parsedData = Papa.parse(csvContent, 
-         { header: true, skipEmptyLines: true, transform: (value) => {
+         { header: true, skipEmptyLines: true, comments: "#", transform: (value) => {
             //replace every . for frontend rechart 
             const normalize = value.replace(/,/g, ".");
             return normalize

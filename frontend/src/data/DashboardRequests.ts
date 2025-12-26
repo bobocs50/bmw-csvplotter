@@ -11,15 +11,13 @@ export async function postUploadCsv(csvFile: File) {
     }
 
     try{
-        const res = await fetch(`${import.meta.env.VITE_BACKEND}/api/post-upload-csv`, options)
-        const data = await res.json()
+        const data = await fetch(`${import.meta.env.VITE_BACKEND}/api/post-upload-csv`, options)
         
-        
-        if (res.ok){
+        if (data.ok){
             console.log("CSV posted successfully")
             return{ok: true, data}
         } else {
-            console.error(`postUploadCsv Bad response ${res.status}`)
+            console.error(`postUploadCsv Bad response ${data.status}`)
         }
     } catch (error){
         console.error(`postUploadCsv: Error occurred ${error}`)

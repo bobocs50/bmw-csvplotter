@@ -1,14 +1,13 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 import { postUploadCsv , getCsvData } from '../../data/DashboardRequests';
 import { useEffect, useState } from 'react';
-
-
+import Chart from './chart/Chart'
 
 
 
 
 export default function App() {
   const [csvData, setCsvData] = useState<any[]>([]);
+
 
   //Upload CSV file to backend
   const uploadCsv = async() => {
@@ -33,53 +32,28 @@ export default function App() {
       const data = await getCsvData()
       setCsvData(data?.data)
       console.log("The datat: ", data)
-
   }
 
   useEffect(() => {
     uploadCsv()
   },[])
 
-
-
   
-// Get first CSV values
-const firstCsv = Object.values(csvData)[0]|| [];
-
-// Get X and Y keys
-const firstscv = Object.values(csvData)[0]
-const firstrow = firstscv[0]
-const xKey = Object.keys(firstrow)[0];
-const yKeys = Object.keys(firstrow).slice(1)
-
-//colors setup
-const colors = ["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6"];
-
-
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
-      <h1 className="text-4xl font-bold text-black mb-8">
-      Graph 1
-      </h1>
-      <div className="w-full max-w-4xl h-96">
-        <ResponsiveContainer>
-          <LineChart data={firstCsv}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey={xKey} />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            {yKeys.map((key, index) => (
-              <Line
-                key={key}
-                type="monotone"
-                dataKey={key}
-                stroke={colors[index % colors.length]}
-              />
-            ))}
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+
+    <div className="">
+
+      <nav className="flex items-center w-full h-22 bg-white ">
+        <div className="">
+          <img className="ml-13 mb-1 h-70 w-105" src="/img/LogoBmw.png" alt="Logo"></img>
+        </div>
+      </nav>
+      <div className="h-1 bg-gray-100 w-full"></div>
+
+
+      {/* Main Chart */}
+      <Chart csvData={csvData} ></Chart>
     </div>
+  
   );
 }
