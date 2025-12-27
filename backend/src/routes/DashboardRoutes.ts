@@ -8,16 +8,9 @@ const router = Router();
 const upload = multer({ dest: "uploads/" });
 
 //Routes
-
-//Post upload CSV data from frontend -> turn into object
 router.post('/post-upload-csv', upload.single("file"),  DashboardController.uploadCsv); 
-
-//Get CSV files to frontend
 router.get('/get-csv-data', DashboardController.getCsv);
-
-//Post Delete with id
-//router.post('/get-data', DashboardController.postDeleteCsv);
-
+router.post('/post-delete-csv', DashboardController.deleteCsv);
 
 
 console.log("Dashboard Routes loaded");

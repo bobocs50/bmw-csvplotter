@@ -11,7 +11,7 @@ export default function Dropdown({ setChartType }: Props) {
     //Tailwind Free CopyPasta
   return (
     <Menu as="div" className="relative inline-block">
-      <MenuButton className="inline-flex items-center gap-1 rounded-md px-3 bg-black h-9 text-sm font-semibold text-white">
+      <MenuButton className="inline-flex items-center gap-1 rounded-md px-3 bg-black h-9 text-sm font-semibold text-white hover:scale-105  hover:bg-gray-700 duration-300">
         Options
         <ChevronDownIcon aria-hidden className="size-4 text-gray-300" />
       </MenuButton>

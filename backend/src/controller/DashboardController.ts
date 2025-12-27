@@ -10,6 +10,8 @@ const DashboardController = {
 
    uploadCsv: async (req: Request, res: Response, next: NextFunction) => {
    try {
+      //delete storage
+      //csvStorage.clear()
       //get file from multer 
       const file = req.file
       if (!file) {return res.status(400).json({ message: "No file uploaded" })}
@@ -63,6 +65,18 @@ const DashboardController = {
     }
   },
 
+  deleteCsv: async (req: Request, res: Response, next: NextFunction) => {
+   try {
+      csvStorage.clear();
+
+      console.log("CSV deleted")
+      res.send("CSV file successfully deleted!")
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+  },
 };
 
 export default DashboardController;
