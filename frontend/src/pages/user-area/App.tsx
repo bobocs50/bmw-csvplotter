@@ -74,7 +74,6 @@ export default function App() {
       </nav>
       <div className="h-1 bg-gray-100 w-full"></div>
 
-
       <div className="flex flex-col items-center">
         {/* Main Chart */}
         <Chart csvName={csvName} csvSize={csvSize} csvLastModified={csvLastModified} csvData={csvData} setCsvData={setCsvData} setCsvCount={setCsvCount} csvCount={csvCount}></Chart>
@@ -82,7 +81,7 @@ export default function App() {
         {/* Upload Area */}
         <div onClick={uploadDisabled ? undefined : () => inputRef.current?.click()} 
         className={`flex justify-center items-center mt-10 hover:bg-gray-300 duration-300 hover:scale-105 w-250 h-15 font-bold rounded-2xl border-3 border-gray-200 ${uploadDisabled ? "bg-gray-400" : "bg-gray-100"} `}>
-          <h1>Upload CSV</h1>
+          <h1>Upload CSV here!</h1>
       
           <input ref={inputRef} type="file" accept=".csv" onChange={handleUploadCsv}  style={{ display: "none" }}></input>
         </div>
