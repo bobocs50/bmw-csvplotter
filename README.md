@@ -1,4 +1,4 @@
-# BMW CSV Plotter
+# BMW-Group CSV Plotter assessment
 
 A **full-stack web application** for uploading, visualizing, and analyzing CSV data with **AI-powered insights**.
 
@@ -39,40 +39,46 @@ A **full-stack web application** for uploading, visualizing, and analyzing CSV d
 
 ### Backend env
 
-NODE_ENV=development
-PORT=5001
-BACKEND_SERVER_URL=http://localhost:5001
-FRONTEND_SERVER_URL=http://localhost:5173
-HF_TOKEN=your_huggingface_token
+-NODE_ENV=development
+-PORT=5001
+-BACKEND_SERVER_URL=http://localhost:5001
+-FRONTEND_SERVER_URL=http://localhost:5173
+-HF_TOKEN=your_huggingface_token
 
 
 ### Frontend env
-VITE_BACKEND=http://localhost:5001
+-VITE_BACKEND=http://localhost:5001
 
 📝 How to Use
-Click Upload CSV to select a file
 
-Choose a chart type: Line, Scatter, or Area
 
-Click Export as PDF to download your chart
+1. Click Upload CSV to select a file
 
-Click AI Analyze for automatic data insights
+2. Choose a chart type: Line, Scatter, or Area
 
-Click Delete to clear data and start over
+3. Click AI Analyze for automatic data insights
+
+4. Click Export as PDF to download your chart
+
+5. Click Delete to clear data and start over
 
 🔌 API Endpoints
-Method	Endpoint	Description
-POST	/api/post-upload-csv	Upload CSV
-GET	/api/get-csv-data	Get parsed CSV data
-POST	/api/post-delete-csv	Delete CSV data
-GET	/api/get-ai-summary	Get AI-generated summary
+- Method	Endpoint	Description
+  
+- POST	/api/post-upload-csv	Upload CSV
+  
+- GET	/api/get-csv-data	Get parsed CSV data
+  
+- POST	/api/post-delete-csv	Delete CSV data
+- 
+- GET	/api/get-ai-summary	Get AI-generated summary
 
 ⚠️ Notes
-Data is stored in-memory (resets on server restart)
+- Data is stored in-memory (resets on server restart)
 
-Requires Tailwind CSS 3 for html2canvas compatibility
+- Requires Tailwind CSS 3 for html2canvas compatibility
 
-AI analysis uses Llama 3.2 via Hugging Face
+- AI analysis uses Llama 3.2 via Hugging Face
 
 📷 Screenshot
 Add your screenshot in your download folder named by your file!
