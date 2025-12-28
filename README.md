@@ -9,7 +9,7 @@ A **full-stack web application** for uploading, visualizing, and analyzing CSV d
 - 📂 Upload and automatically parse CSV files  
 - 📊 Interactive charts: **Line**, **Scatter**, **Area**  
 - 📄 Export charts as **PDF documents**  
-- 🤖 AI-powered data analysis using Hugging Face LLM  
+- 🤖 AI-powered data analysis using Hugging Face LLM: meta-llama/Llama-3.2-1B-Instruct:novita 
 - ⚡ Real-time data visualization with **Recharts**  
 - 📱 Responsive design with **Tailwind CSS**
 
@@ -30,7 +30,7 @@ A **full-stack web application** for uploading, visualizing, and analyzing CSV d
 - TypeScript  
 - Multer for file uploads  
 - Papa Parse for CSV parsing  
-- Hugging Face Inference API for AI insights  
+- Hugging Face Inference API for AI insights  -> meta-llama/Llama-3.2-1B-Instruct:novita
 - UUID for file identification  
 
 ---
