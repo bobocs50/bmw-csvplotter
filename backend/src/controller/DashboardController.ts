@@ -2,6 +2,13 @@ import { Request, Response, NextFunction } from 'express';
 import { v4 as uuidv4 } from "uuid";
 import Papa from "papaparse";
 import fs from "fs";
+import dotenv from "dotenv";
+import { InferenceClient } from "@huggingface/inference";
+
+dotenv.config();
+
+
+
 
 //save json object with id
 const csvStorage: Map<string, any[]> = new Map();
@@ -71,6 +78,65 @@ const DashboardController = {
 
       console.log("CSV deleted")
       res.send("CSV file successfully deleted!")
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+  },
+
+  aiSummary: async (req: Request, res: Response, next: NextFunction) => {
+   try {
+
+      const csvObject: { [id: string]: any[] } = {};
+      for (const [id, data] of csvStorage){
+        csvObject[id] = data
+      }
+
+      const csvJSON = JSON.stringify(csvObject, null, 2)
+
+      const prompt = `
+         You are a expert Data Scientist. Analyze the CSV data below. Provide EXACTLY 5 bullet points (•) 
+         CSV Data:
+         ${csvJSON}
+
+         Rules:
+         1. Use actual numbers from the data (min, max, mean, range, trends).
+         2. Ignore any UUID/ID fields—focus only on numerical data columns.
+         3. Each bullet: ONE concise insight (trend, pattern, statistic, or anomaly).
+         4. NO introductory text like "Here are 4 bullet points."
+         5. NO explanations between bullets.
+         6. NO empty bullets.
+
+         Required format:
+         • [insight 1]
+         • [insight 2]
+         • [insight 3]
+         • [insight 4]
+         • [This insight should be a takeaway: one sentence summary]
+
+         Start now:
+      `
+
+      const client = new InferenceClient(process.env.HF_TOKEN);
+
+      const chatCompletion = await client.chatCompletion({
+         model: "meta-llama/Llama-3.2-1B-Instruct:novita",
+         messages: [
+            {
+                  role: "system",
+                  content: prompt,
+            },
+         ],
+      });
+
+      if (chatCompletion.choices[0]){
+         console.log("Answer: ", chatCompletion.choices[0].message);
+         res.json(chatCompletion.choices[0].message)
+      }
+      
+     
+
 
     } catch (error) {
         console.error(error);

@@ -11,6 +11,7 @@ const upload = multer({ dest: "uploads/" });
 router.post('/post-upload-csv', upload.single("file"),  DashboardController.uploadCsv); 
 router.get('/get-csv-data', DashboardController.getCsv);
 router.post('/post-delete-csv', DashboardController.deleteCsv);
+router.get('/get-ai-summary', DashboardController.aiSummary)
 
 
 console.log("Dashboard Routes loaded");

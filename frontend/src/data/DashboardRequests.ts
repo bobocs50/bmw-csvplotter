@@ -24,7 +24,6 @@ export async function postUploadCsv(csvFile: File) {
     }
 }
 
-
 export async function getCsvData() {
     const options : RequestInit = {
         method: "GET",
@@ -36,7 +35,6 @@ export async function getCsvData() {
         
         if (res.ok){
             const data = await res.json()
-            console.log(data)
             return {data: data.data}
         } else {
             console.error(`getCsvData Bad response ${res.status}`)
@@ -65,5 +63,25 @@ export async function postDeleteCsv() {
         }
     } catch (error){
         console.error(`postDeleteCsv Error occurred ${error}`)
+    }
+}
+
+export async function getAiSummary() {
+    const options : RequestInit = {
+        method: "GET",
+        credentials: "include",
+    }
+
+    try{
+        const res = await fetch(`${import.meta.env.VITE_BACKEND}/api/get-ai-summary`, options)
+        
+        if (res.ok){
+            const data = await res.json()
+            return data
+        } else {
+            console.error(`getAiSummary Bad response ${res.status}`)
+        }
+    } catch (error){
+        console.error(`getAiSummary: Error occurred ${error}`)
     }
 }

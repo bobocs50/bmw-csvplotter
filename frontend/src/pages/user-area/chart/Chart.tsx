@@ -11,10 +11,13 @@ interface Props {
     csvLastModified: string | undefined;
     setCsvCount: React.Dispatch<React.SetStateAction<number>>;
     csvCount: number;
-
+    setCsvDataDeleted:  React.Dispatch<React.SetStateAction<boolean>>;
+    aiRunning: boolean;
+    setHasCsv: React.Dispatch<React.SetStateAction<boolean>>;
+    setPressedExport: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Chart({ setCsvData, csvData, csvName, csvLastModified, csvSize, setCsvCount, csvCount}: Props) {
+export default function Chart({ setPressedExport, setHasCsv, aiRunning, setCsvData, csvData, csvName, csvLastModified, csvSize, setCsvCount, csvCount, setCsvDataDeleted}: Props) {
 
     const [chartType, setChartType] = useState<ChartKind>("LineChart");
 
@@ -28,17 +31,20 @@ export default function Chart({ setCsvData, csvData, csvName, csvLastModified, c
         const result = await postDeleteCsv()
 
         if (result){
-           setCsvData([])
-           const newCsvCount = csvCount - 1;
-           setCsvCount(newCsvCount)
-           renderChart()
-
+            setCsvData([])
+            const newCsvCount = csvCount - 1;
+            setCsvCount(newCsvCount)
+            setCsvDataDeleted(true)
+            renderChart()
+            setHasCsv(false)
         }
     };
 
-
     //Chart is empy -> fallback
      if (csvData.length === 0) {
+        
+        //turn on no csvData
+
         return (
             <div className="flex-col mt-30 bg-gray-100 w-250 h-130 rounded-2xl p-5 border-3 border-gray-200">
                 <p className="text-xl text-gray-600">No data found...</p>
@@ -120,7 +126,7 @@ export default function Chart({ setCsvData, csvData, csvName, csvLastModified, c
 
 
 return (
-    <div className="flex justify-center mt-30">
+    <div className="flex justify-center mt-10">
         {/* Responsive Chart */}
         <div className="flex-col bg-gray-100 w-250 rounded-2xl p-5 border-3 border-gray-200">
             {/* Chart Name */}
@@ -135,9 +141,12 @@ return (
                
                 {/* Dropdown and Delete Button */}
                 <div className="flex gap-2">
+                    <div onClick={() => setPressedExport(true)} className={`flex justify-center items-center px-3 h-9 hover:scale-105  duration-300 rounded-md ${aiRunning ? "bg-gray-600 hover:bg-gray-700" : "bg-blue-400 hover:bg-blue-600"}`}>
+                        <h1 className="text-white font-bold">Export as PDF</h1>
+                    </div>
                     <Dropdown setChartType={setChartType}></Dropdown>
-                    <div className="flex justify-center items-center px-3 h-9 bg-red-500 hover:scale-105  hover:bg-red-600 duration-300 rounded-md">
-                        <h1 onClick={handleDeleteCsv} className="text-white font-bold">Delete</h1>
+                    <div onClick={aiRunning? undefined: handleDeleteCsv} className={`flex justify-center items-center px-3 h-9 hover:scale-105  duration-300 rounded-md ${aiRunning ? "bg-gray-600 hover:bg-gray-700:" : "bg-red-500 hover:bg-red-600"}`}>
+                        <h1 className="text-white font-bold">Delete</h1>
                     </div>
                 </div>
             </div>
