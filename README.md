@@ -1,3 +1,5 @@
+-Delete Chart by UUID not integrated yet! -> now only clearing the HashMap -> coming soon
+
 # CSV Plotter assessment
 
 A **full-stack web application** for uploading, visualizing, and analyzing CSV data with **AI-powered insights**.
